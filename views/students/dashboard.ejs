@@ -1,0 +1,107 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    
+    <!-- header -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <img src="/images/file.png" alt="logo" class="navbar">
+                <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="notifications-center pt-1 me-4 ms-4 text-center">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-bell"></i> Notifications
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+                                    <li><a class="dropdown-item" href="#">New scholarship update available</a></li>
+                                    <li><a class="dropdown-item " href="#">New announcement: <br> Upcoming deadlines</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">View all notifications</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                        </a>
+                        <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>    
+    </header>
+    <%- include("../includes/flash.ejs") %>
+    <div class="container mt-4">
+        <!-- Alert
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Welcome back, [Student Name]!</strong> You have successfully logged into your dashboard.
+        </div> -->
+        <!-- Notif and alerts -->
+        <!-- <div class="container mt-4">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Important Notice:</strong> Please review the latest policy changes.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div> -->
+          <!-- Cards -->
+        <div class="container mt-2">
+            <div class="row justify-content-evenly">
+                <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+                    <a href="/login/student/announcement">
+                        <img src="/images/announcements.jpg" class="card-img-top rounded-img" alt="Announcements">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Announcements</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+                    <a href="/login/student/upload">
+                        <img src="/images/docs.jpg" class="card-img-top rounded-img" alt="Upload Documents">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Upload Documents</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+                    <a href="/login/student/viewstatus">
+                        <img src="/images/viewstatus.jpg" class="card-img-top rounded-img" alt="View Status">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">View Status</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+                    <a href="/login/student/scholarship">
+                        <img src="/images/scholarship.jpg" class="card-img-top rounded-img" alt="Scholarship Details">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Scholarship Details</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+                    <a href="/login/student/apphistory">
+                        <img src="/images/apphistory.jpg" class="card-img-top rounded-img" alt="Application History">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Application History</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+</body>

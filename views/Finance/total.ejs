@@ -1,0 +1,192 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+    body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header h2 {
+    font-weight: 600;
+    color: #343a40;
+}
+
+.card {
+    border: none;
+    border-radius: 8px;
+}
+
+.card-title {
+    font-weight: bold;
+    color: #495057;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+}
+
+.table-dark th {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.table-responsive {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+</style>
+
+
+
+<body>
+    <div class="container mt-1">
+        <header class="sticky-top">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <img src="/images/file.png" alt="logo" class="navbar">
+                    <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="/login/finance/dashboard">Home</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                            </a>
+                            <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    </div>   
+                </div>
+            </nav>
+            </header>
+
+        <!-- Summary Cards -->
+        <div class="row mb-4 mt-2">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Disbursed</h5>
+                        <p class="card-text fs-4" id="totalDisbursed">₹10,00,00,000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Number of Students</h5>
+                        <p class="card-text fs-4" id="totalStudents">1,000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Pending Disbursement</h5>
+                        <p class="card-text fs-4" id="pendingDisbursement">₹2,00,00,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search by Student Name...">
+            </div>
+            <div class="col-md-3">
+                <select id="statusFilter" class="form-select">
+                    <option value="">Filter by Status</option>
+                    <option value="Disbursed">Disbursed</option>
+                    <option value="Pending">Pending</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary w-100" onclick="applyFilters()">Apply Filters</button>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-responsive shadow-sm">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Student Name</th>
+                        <th scope="col">Scholarship Amount</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date of Disbursement</th>
+                    </tr>
+                </thead>
+                <tbody id="disbursementTable">
+                    <!-- Sample Rows -->
+                    <tr>
+                        <td>1</td>
+                        <td>Rohit Sharma</td>
+                        <td>₹50,000</td>
+                        <td class="text-success">Disbursed</td>
+                        <td>12-Aug-2024</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Anjali Gupta</td>
+                        <td>₹60,000</td>
+                        <td class="text-warning">Pending</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for the disbursement table
+const disbursements = [
+    { id: 1, name: "Rohit Sharma", amount: 50000, status: "Disbursed", date: "12-Aug-2024" },
+    { id: 2, name: "Anjali Gupta", amount: 60000, status: "Pending", date: "-" },
+    { id: 3, name: "Akash Verma", amount: 70000, status: "Disbursed", date: "10-Aug-2024" },
+    { id: 4, name: "Pooja Singh", amount: 55000, status: "Pending", date: "-" }
+];
+
+// Function to render the table with current data
+function renderTable(data) {
+    const tableBody = document.getElementById("disbursementTable");
+    tableBody.innerHTML = data.map((item, index) => `
+        <tr>
+            <td>${index + 1}</td>
+            <td>${item.name}</td>
+            <td>₹${item.amount.toLocaleString()}</td>
+            <td class="${item.status === 'Disbursed' ? 'text-success' : 'text-warning'}">${item.status}</td>
+            <td>${item.date}</td>
+        </tr>
+    `).join('');
+}
+
+// Function to apply filters to the table
+function applyFilters() {
+    const searchInput = document.getElementById("searchInput").value.toLowerCase();
+    const statusFilter = document.getElementById("statusFilter").value;
+
+    const filteredData = disbursements.filter(item => {
+        return (item.name.toLowerCase().includes(searchInput) || searchInput === '') &&
+               (item.status === statusFilter || statusFilter === '');
+    });
+
+    renderTable(filteredData);
+}
+
+// Initial render
+renderTable(disbursements);
+
+    </script>
+</body>

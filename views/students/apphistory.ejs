@@ -1,0 +1,190 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+#application-history {
+    margin: 20px;
+}
+
+.application-form {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.documents .document {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+button {
+    margin-left: 5px;
+}
+
+.add-doc-btn {
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.add-doc-btn:hover {
+    background-color: #45a049;
+}
+
+</style>
+<body>
+    <!-- header -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <img src="/images/file.png" alt="logo" class="navbar">
+                <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/login/student/dashboard">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="notifications-center pt-1 me-4 ms-4 text-center">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-bell"></i> Notifications
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+                                    <li><a class="dropdown-item" href="#">New scholarship update available</a></li>
+                                    <li><a class="dropdown-item " href="#">New announcement: <br> Upcoming deadlines</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">View all notifications</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                        </a>
+                        <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>    
+    </header>
+    <%- include("../includes/flash.ejs") %>
+    <h2>Application History</h2>
+    
+    <div class="application-form" id="form-1">
+        <h3>ID: 23101B0024</h3>
+        <div class="documents">
+            <div class="document" id="document-1">
+                <p>Document 1: Aadhar.pdf</p>
+                <button class="edit-btn">Edit</button>
+                <button class="replace-btn">Replace</button>
+                <button class="delete-btn">Delete</button>
+            </div>
+            <!-- Add more document blocks as needed -->
+        </div>
+        <button class="add-doc-btn">Add Document</button>
+    </div>
+    
+    <!-- Repeat for other forms -->
+    
+</div>
+    
+<script>
+// script.js
+document.addEventListener('DOMContentLoaded', function () {
+    const applicationsList = document.getElementById('application-forms-list');
+    const editModal = document.getElementById('editModal');
+    const closeModal = document.querySelector('.close');
+    const editForm = document.getElementById('editForm');
+    let currentDocumentId = null;
+
+    // Fetch application forms from the backend
+    fetch('/api/application-forms')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(form => {
+                const div = document.createElement('div');
+                div.className = 'application-item';
+                div.innerHTML = `
+                    <span>Form ID: ${form.id} - Document: ${form.documentName}</span>
+                    <div class="action-buttons">
+                        <button class="edit-btn" data-id="${form.id}" data-name="${form.documentName}">Edit</button>
+                        <button class="replace-btn" data-id="${form.id}" data-name="${form.documentName}">Replace</button>
+                        <button class="delete-btn" data-id="${form.id}">Delete</button>
+                    </div>
+                `;
+                applicationsList.appendChild(div);
+            });
+
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    currentDocumentId = this.dataset.id;
+                    document.getElementById('document-name').value = this.dataset.name;
+                    editModal.style.display = 'block';
+                });
+            });
+
+            document.querySelectorAll('.replace-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    currentDocumentId = this.dataset.id;
+                    // Handle the replace action (you can open a similar modal for this if needed)
+                    // ...
+                });
+            });
+
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const documentId = this.dataset.id;
+                    fetch(/api/delete-document/${documentId}, { method: 'DELETE' })
+                        .then(response => response.json())
+                        .then(result => {
+                            alert(result.message);
+                            location.reload();
+                        });
+                });
+            });
+        });
+
+    // Close the modal
+    closeModal.addEventListener('click', function () {
+        editModal.style.display = 'none';
+    });
+
+    // Handle the edit form submission
+    editForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('documentName', document.getElementById('document-name').value);
+        formData.append('documentFile', document.getElementById('document-file').files[0]);
+
+        fetch(/api/edit-document/${currentDocumentId}, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(result => {
+            alert(result.message);
+            editModal.style.display = 'none';
+            location.reload();
+        });
+    });
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        if (event.target == editModal) {
+            editModal.style.display = 'none';
+        }
+    };
+});
+</script>
+
+</body>

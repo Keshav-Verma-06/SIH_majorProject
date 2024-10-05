@@ -1,0 +1,217 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    
+    <!-- header -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <img src="/images/file.png" alt="logo" class="navbar">
+                <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="notifications-center pt-1 me-4 ms-4 text-center">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-bell"></i> Notifications
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+                                    <li><a class="dropdown-item" href="#">New scholarship update available</a></li>
+                                    <li><a class="dropdown-item " href="#">New announcement: <br> Upcoming deadlines</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">View all notifications</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                        </a>
+                        <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>    
+    </header>
+    <%- include("../includes/flash.ejs") %>
+<div class="container mt-4">
+       
+     <!--Upload docs section-->
+<div class="container my-5">
+                <h3 class="text-center">Upload Documents</h3>
+                    <!-- Document Upload Fields -->
+    <form id="documentUploadForm" action="/login/student/upload" method="POST" enctype="multipart/form-data">
+                        <!-- Personal Identification Section -->
+                        <div class="section">
+                          <h3>Personal Identification</h3>
+                          <div class="mb-3">
+                            <label for="aadhaarCard" class="form-label">Aadhaar Card<span class="">*</span></label>
+                            <input type="file" class="form-control" id="aadhaarCard" name="aadhaarCard" >
+                          </div>
+                          <div class="mb-3">
+                            <label for="passport" class="form-label">Passport (if available)</label>
+                            <input type="file" class="form-control" id="passport" name="passport">
+                          </div>
+                          <div class="mb-3">
+                            <label for="driversLicense" class="form-label">Driver’s License (if available)</label>
+                            <input type="file" class="form-control" id="driversLicense" name="driversLicense">
+                          </div>
+                          <div class="mb-3">
+                            <label for="domicile" class="form-label">Domicile Certificate<span class="">*</span></label>
+                            <input type="file" class="form-control" id="domicile" name="domicile" >
+                          </div>
+                        </div>
+                        
+                        <!-- Academic Documents Section -->
+                        <div class="section">
+                          <h3>Academic Documents</h3>
+                          <div class="mb-3">
+                            <label for="markSheets" class="form-label">Mark Sheets<span class="">*</span></label>
+                            <input type="file" class="form-control" id="markSheets" name="markSheets" >
+                          </div>
+                          <div class="mb-3">
+                            <label for="certificates" class="form-label">Certificates<span class="">*</span></label>
+                            <input type="file" class="form-control" id="certificates" name="certificates" >
+                          </div>
+                        </div>
+                      
+                        <!-- Proof of Admission Section -->
+                        <div class="section">
+                          <h3>Proof of Admission</h3>
+                          <div class="mb-3">
+                            <label for="admissionLetter" class="form-label">Admission Letter<span class="">*</span></label>
+                            <input type="file" class="form-control" id="admissionLetter" name="admissionLetter" >
+                          </div>
+                          <div class="mb-3">
+                            <label for="courseRegistration" class="form-label">Course Registration<span class="">*</span></label>
+                            <input type="file" class="form-control" id="courseRegistration" name="courseRegistration" >
+                          </div>
+                        </div>
+                      
+                        <!-- Financial Documents Section -->
+                        <div class="section">
+                          <h3>Financial Documents</h3>
+                          <div class="mb-3">
+                            <label for="incomeCertificate" class="form-label">Income Certificate<span class="">*</span></label>
+                            <input type="file" class="form-control" id="incomeCertificate" name="incomeCertificate" >
+                          </div>
+                          <div class="mb-3">
+                            <label for="bankStatement" class="form-label">Bank Statement</label>
+                            <input type="file" class="form-control" id="bankStatement" name="bankStatement">
+                          </div>
+                          <div class="mb-3">
+                            <label for="feeReceipt" class="form-label">Fee Receipt<span class="">*</span></label>
+                            <input type="file" class="form-control" id="feeReceipt" name="feeReceipt" >
+                          </div>
+                        </div>
+                       
+                   
+                       <!-- Caste/Category Certificate Section -->
+<div class="section">
+  <h3>Caste/Category Certificate (if applicable)</h3>
+  
+  <!-- Dropdown for selecting caste categories -->
+  <div class="mb-3">
+      <label for="casteCategory" class="form-label">Select Caste Category</label>
+      <select class="form-control" id="casteCategory" name="casteCategory" >
+          <option value="" disabled selected>Select your caste category</option>
+          <option value="General">General</option>
+          <option value="OBC">OBC</option>
+          <option value="SC">SC</option>
+          <option value="ST">ST</option>
+          <option value="Other">Other</option>
+      </select>
+  </div>
+  
+  <!-- File upload for caste certificate -->
+  <div class="mb-3">
+      <label for="casteCertificate" class="form-label">Upload Caste Certificate</label>
+      <input type="file" class="form-control" id="casteCertificate" name="casteCertificate">
+  </div>
+
+
+                      
+                        <!-- Other Supporting Documents Section -->
+                        <div class="section">
+                          <h3>Other Supporting Documents</h3>
+                          <div class="mb-3">
+                            <label for="recommendationLetters" class="form-label">Recommendation Letters</label>
+                            <input type="file" class="form-control" id="recommendationLetters" name="recommendationLetters">
+                          </div>
+                          <div class="mb-3">
+                            <label for="personalStatement" class="form-label">Personal Statement or Essay</label>
+                            <input type="file" class="form-control" id="personalStatement" name="personalStatement">
+                          </div>
+                          <div class="mb-3">
+                            <label for="passportPhoto" class="form-label">Recent Passport-sized Photograph<span class="">*</span></label>
+                            <input type="file" class="form-control" id="passportPhoto" name="passportPhoto" >
+                          </div>
+                          <div class="mb-3">
+                            <label for="signature" class="form-label">Photograph of signature<span class="">*</span></label>
+                            <input type="file" class="form-control" id="signature" name="signature" >
+                          </div>
+                        </div>
+                          
+                         <!-- CAPTCHA -->
+                        <div class="form-group mb-3 text-center">
+                            <div class="g-recaptcha" data-sitekey="6LdteDAqAAAAAJRx8x4R7wfDrKv96Os8hg7EwsT9"></div>
+                        </div>
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-primary">Submit Documents</button>
+                        </div>
+    </form>
+</div>
+</div>
+</div>
+ <!-- Guidelines Section -->
+<div class="container mt-5 mb-3">
+    <h3 class="text-center">Upload Guidelines</h3>
+    <div class="guidelines">
+        <ul>
+            <li><strong>Aadhaar Card:</strong> Upload a clear, legible copy. Max size: 5MB.</li>
+            <li><strong>Passport:</strong> If available, provide a scanned copy. Max size: 5MB.</li>
+            <li><strong>Driver’s License:</strong> Upload your driver’s license if available. Max size: 5MB.</li>
+            <li><strong>Academic Documents:</strong>
+                <ul>
+                    <li>Mark Sheets (recent academic years). Max size: 10MB.</li>
+                    <li>Certificates (degrees, diplomas, achievements). Max size: 10MB.</li>
+                </ul>
+            </li>
+            <li><strong>Proof of Admission:</strong>
+                <ul>
+                    <li>Admission Letter. Max size: 5MB.</li>
+                    <li>Course Registration. Max size: 5MB.</li>
+                </ul>
+            </li>
+            <li><strong>Financial Documents:</strong>
+                <ul>
+                    <li>Income Certificate. Max size: 5MB.</li>
+                    <li>Bank Statement. Max size: 5MB.</li>
+                    <li>Fee Receipt. Max size: 5MB.</li>
+                </ul>
+            </li>
+            <li><strong>Caste/Category Certificate:</strong> Upload the relevant caste or category certificate if applicable. Max size: 5MB.</li>
+            <li><strong>Other Supporting Documents:</strong>
+                <ul>
+                    <li>Recommendation Letters. Max size: 5MB.</li>
+                    <li>Personal Statement or Essay. Max size: 5MB.</li>
+                    <li>Recent Passport-sized Photograph. Max size: 3MB.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+    
+</body>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMSSS Statistics Page</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js"></script>
+    <!-- Include Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for Charts and Trend Analysis */
+        .chart-container {
+            position: relative;
+            height: 300px; /* Adjust as needed */
+            width: 100%; /* Ensure it fits within its container */
+        }
+
+        /* Trend Analysis Section */
+        .trend-analysis {
+            margin-top: 3rem;
+        }
+
+        .trend-analysis h5 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .trend-analysis .card {
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .trend-analysis .card-body {
+            padding: 1.5rem;
+        }
+
+        .trend-analysis .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design for Trend Analysis */
+        @media (max-width: 768px) {
+            .trend-analysis h5 {
+                font-size: 1.25rem;
+            }
+
+            .trend-analysis .card {
+                margin-bottom: 1.5rem;
+            }
+
+            .trend-analysis .card-title {
+                font-size: 1.1rem;
+            }
+
+            .chart-container {
+                height: 250px;
+            }
+        }
+
+        /* Summary Statistics Section */
+        .summary-section {
+            margin-top: 3rem;
+        }
+
+        .summary-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-card {
+            text-align: center;
+        }
+
+        .summary-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .summary-card .card-title {
+            font-size: 1.25rem;
+        }
+
+        .summary-card .card-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+     <!-- header -->
+<header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="/images/file.png" alt="logo" class="navbar">
+            <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/login/sag/dashboard">Home</a>
+                </li>
+                <li class="nav-item">
+                    <div class="notifications-center pt-1 me-4 ms-4 text-center">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i> Notifications
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+                                <li><a class="dropdown-item" href="#">New scholarship update available</a></li>
+                                <li><a class="dropdown-item " href="#">New announcement: <br> Upcoming deadlines</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">View all notifications</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                    </a>
+                    <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            </div>   
+        </div>
+    </nav>
+</header>
+    <div class="container mt-4">
+        <!-- Alert
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+           Welcome to the Statistics section <strong>[SAG Bureau Name]!</strong>
+        </div>
+         <!-- Notif and alerts -->
+         <!-- <div class="container mt-4">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Important Notice:</strong> Please review the latest policy changes.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div> --> 
+    <div class="container mt-5">
+        <!-- Page Heading -->
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="text-center">Statistical Data</h1>
+            </div>
+        </div>
+
+        <!-- Progress Bars Section -->
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <h5 class="text-center">Application Status</h5>
+                <div class="progress mb-3">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">Approved: 72%</div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Pending: 20%</div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 8%;" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100">Rejected: 8%</div>
+                </div>
+            </div>
+
+            <!-- Interactive Pie Chart Section -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Application Status Breakdown</h5>
+                        <div class="chart-container">
+                            <canvas id="applicationStatusChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Statistics Section -->
+        <div class="container summary-section">
+            <h2 class="text-center">Summary Statistics</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card summary-card bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title">Average Processing Time</h5>
+                            <p class="card-text">3.2 days</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card summary-card bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title">Most Common Issues</h5>
+                            <p class="card-text">Missing Documents</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card summary-card bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title">Approved Applications</h5>
+                            <p class="card-text">15</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Document Review Progress Chart Section -->
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Document Review Progress</h5>
+                        <div class="chart-container">
+                            <canvas id="documentReviewChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trend Analysis Section -->
+        <div class="trend-analysis mt-5">
+            <h5 class="text-center">Trend Analysis</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title text-center">Applications Over Time</h6>
+                            <div class="chart-container">
+                                <canvas id="applicationsOverTimeChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title text-center">Document Review Trends</h6>
+                            <div class="chart-container">
+                                <canvas id="documentReviewTrendsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <!-- footer -->
+      <footer>
+        <div class="f-info">
+            <div class="f-info-socials">
+                <i class="fa-brands fa-square-facebook"></i>
+                <i class="fa-brands fa-square-instagram"></i>
+                <i class="fa-brands fa-linkedin"></i>
+            </div>
+            <div class="f-info-brand">&copy; Prime Minister's Special Scholarship Scheme (PMSSS)</div>
+            <div class="f-info-links">
+                <a href="/privacy">Privacy&nbsp;&nbsp;|</a>
+                <a href="/terms">&nbsp;&nbsp;Terms&nbsp;&nbsp;|</a>
+                <a href="/terms">&nbsp;&nbsp;Help Desk&nbsp;&nbsp;|</a>
+                <a href="/terms">&nbsp;&nbsp;Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!-- Chatbot Button -->
+<div id="chatbot">
+    <i class="fa-solid fa-comments"></i>
+</div>
+
+<!-- Chatbot Window -->
+<div id="chatbotWindow">
+    <header>PMSSS Chatbot</header>
+    <div id="chatbotMessages"></div>
+    <div id="chatbotInput">
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<!-- Chatbot Script -->
+<script>
+    // Toggle chatbot window visibility
+    document.getElementById('chatbot').addEventListener('click', function() {
+        var chatbotWindow = document.getElementById('chatbotWindow');
+        chatbotWindow.style.display = chatbotWindow.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Enhanced chatbot logic
+    function sendMessage() {
+        var userInput = document.getElementById('userInput').value;
+        var chatbotMessages = document.getElementById('chatbotMessages');
+        
+        if (userInput.trim() !== '') {
+            var userMessage = `<div><strong>You:</strong> ${userInput}</div>`;
+            chatbotMessages.innerHTML += userMessage;
+
+            // Clear the input
+            document.getElementById('userInput').value = '';
+
+            // Add a typing indicator
+            var typingIndicator = `<div id="typingIndicator"><em>Bot is typing...</em></div>`;
+            chatbotMessages.innerHTML += typingIndicator;
+
+            // Scroll to the latest message
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+            // Simulate a delay for the bot's response
+            setTimeout(function() {
+                // Remove the typing indicator
+                var indicator = document.getElementById('typingIndicator');
+                if (indicator) {
+                    indicator.remove();
+                }
+
+                // Example response logic
+                var botResponse = generateResponse(userInput);
+                chatbotMessages.innerHTML += `<div><strong>Bot:</strong> ${botResponse}</div>`;
+
+                // Scroll to the latest message
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }, 1000);
+        }
+    }
+
+    // Example function to generate responses based on user input
+    function generateResponse(userInput) {
+        userInput = userInput.toLowerCase();
+        if (userInput.includes('scholarship status')) {
+            return 'You can check your scholarship status by logging into your student account.';
+        } else if (userInput.includes('document submission')) {
+            return 'Please ensure your documents are in PDF format and upload them through the student portal.';
+        } else if (userInput.includes('contact')) {
+            return 'You can reach out to us via the Contact Us section at the bottom of the page.';
+        } else if (userInput.includes('help')) {
+            return 'How can I assist you further? You can ask about scholarship status, document submission, or contact details.';
+        } else if (userInput.includes('eligibility')) {
+            return 'To check your scholarship eligibility, please refer to the eligibility criteria section on the scholarship page.';
+        } else if (userInput.includes('application deadline')) {
+            return 'The application deadline is listed on the scholarship homepage. Make sure to apply before the specified date!';
+        } else if (userInput.includes('status of application')) {
+            return 'You can check the status of your application by logging into your student account and navigating to the application section.';
+        } else if (userInput.includes('technical issues')) {
+            return 'For technical issues, please contact our support team through the Help section or email us at support@example.com.';
+        } else if (userInput.includes('feedback')) {
+            return 'We appreciate your feedback! You can submit it through the Feedback form available in the Contact Us section.';
+        } else if (userInput.includes('update information')) {
+            return 'To update your information, please log in to your account and navigate to the Profile section.';
+        } else {
+            return 'I\'m sorry, I didn\'t understand that. Could you please rephrase your question?';
+        }
+    }
+</script>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <!-- Chart.js Initialization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Application Status Chart
+            var ctx1 = document.getElementById('applicationStatusChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'pie',
+                data: {
+                    labels: ['Approved', 'Pending', 'Rejected'],
+                    datasets: [{
+                        data: [72, 20, 8],
+                        backgroundColor: ['#28a745', '#ffc107', '#dc3545'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+
+            // Document Review Progress Chart
+            var ctx2 = document.getElementById('documentReviewChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Submitted', 'Under Review', 'Verified', 'Approved'],
+                    datasets: [{
+                        label: 'Document Review Status',
+                        data: [150, 100, 50, 30],
+                        backgroundColor: '#007bff',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Documents'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Applications Over Time Chart
+            var ctx3 = document.getElementById('applicationsOverTimeChart').getContext('2d');
+            new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Applications Submitted',
+                        data: [120, 150, 170, 200, 180, 210, 230, 250, 220, 180, 160, 140],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Document Review Trends Chart
+            var ctx4 = document.getElementById('documentReviewTrendsChart').getContext('2d');
+            new Chart(ctx4, {
+                type: 'bar',
+                data: {
+                    labels: ['Submitted', 'Under Review', 'Verified', 'Approved'],
+                    datasets: [{
+                        label: 'Document Review Status',
+                        data: [150, 100, 50, 30],
+                        backgroundColor: '#007bff',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Documents'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

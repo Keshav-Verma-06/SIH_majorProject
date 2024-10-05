@@ -1,0 +1,163 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+     <!-- header -->
+     <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <img src="/images/file.png" alt="logo" class="navbar">
+                <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/login/student/dashboard">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="notifications-center pt-1 me-4 ms-4 text-center">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-bell"></i> Notifications
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+                                    <li><a class="dropdown-item" href="#">New scholarship update available</a></li>
+                                    <li><a class="dropdown-item " href="#">New announcement: <br> Upcoming deadlines</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">View all notifications</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                        </a>
+                        <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>    
+    </header>
+    <%- include("../includes/flash.ejs") %>
+    <div class="container mt-4">
+        <!-- Alert -->
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Welcome [Student Name]!</strong> to the Scholarship Details section.
+        </div>
+    </div>
+        <!-- Notif and alerts -->
+        <div class="container mt-4">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Important Notice:</strong> Please review the latest policy changes.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="container mt-4">
+            <h1 class="text-center">Prime Minister's Special Scholarship Scheme (PMSSS)</h1>
+    
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title">Overview</h2>
+                    <p class="card-text">
+                        The Prime Minister's Special Scholarship Scheme (PMSSS) is an initiative aimed at providing financial assistance to meritorious students from specific regions to pursue higher education. This scholarship is designed to empower students by covering tuition fees, living expenses, and other associated costs. The goal is to ensure that financial constraints do not become a barrier to education for deserving candidates.
+                    </p>
+                </div>
+            </div>
+    
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title">Eligibility Criteria</h2>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">The applicant must be a domicile of [Region/State].</li>
+                        <li class="list-group-item">The applicant must have passed the 12th standard or equivalent from a recognized board.</li>
+                        <li class="list-group-item">The applicant must have secured a minimum of 60% in the qualifying examination.</li>
+                        <li class="list-group-item">Family income should not exceed INR 8 lakhs per annum.</li>
+                        <li class="list-group-item">The applicant must have gained admission in a recognized institution for the current academic year.</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title">Application Process</h2>
+                    <p class="card-text">
+                        The application process for PMSSS is designed to be straightforward and user-friendly. Follow the steps below to apply:
+                    </p>
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item">Visit the official PMSSS portal and register using your basic details.</li>
+                        <li class="list-group-item">Fill out the application form with accurate academic, personal, and family details.</li>
+                        <li class="list-group-item">Upload the necessary documents, including proof of domicile, income certificate, academic certificates, and passport-sized photograph.</li>
+                        <li class="list-group-item">Review your application and submit it before the deadline.</li>
+                        <li class="list-group-item">You will receive an application ID. Keep it safe for future reference.</li>
+                        <li class="list-group-item">The selection process will be based on merit and the number of scholarships available.</li>
+                    </ol>
+                </div>
+            </div>
+    
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title">Important Deadlines</h2>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Application Start Date: [Start Date]</li>
+                        <li class="list-group-item">Application End Date: [End Date]</li>
+                        <li class="list-group-item">Document Verification Date: [Verification Date]</li>
+                        <li class="list-group-item">Scholarship Disbursement Date: [Disbursement Date]</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title">Documents Required</h2>
+                    <p class="card-text">
+                        Ensure you have the following documents ready before starting your application:
+                    </p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Domicile Certificate</li>
+                        <li class="list-group-item">Income Certificate</li>
+                        <li class="list-group-item">12th Standard Marksheet</li>
+                        <li class="list-group-item">Admission Letter from the College/University</li>
+                        <li class="list-group-item">Recent Passport-sized Photograph</li>
+                        <li class="list-group-item">Bank Account Details</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title">Selection Process</h2>
+                    <p class="card-text">
+                        The selection of candidates for the PMSSS will be based on merit and the number of scholarships available. The process includes:
+                    </p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Review of academic performance and income status.</li>
+                        <li class="list-group-item">Verification of submitted documents.</li>
+                        <li class="list-group-item">Final selection by the scholarship committee.</li>
+                    </ul>
+                    <p class="card-text">
+                        Selected candidates will be notified via email and the official portal. They will also receive instructions on how to avail the scholarship benefits.
+                    </p>
+                </div>
+            </div>
+    
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title">Contact Information</h2>
+                    <p class="card-text">
+                        For any queries or assistance regarding the PMSSS application process, you can reach out to us at:
+                    </p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Email: support@pmsss.gov.in</li>
+                        <li class="list-group-item">Helpline: 1800-123-4567</li>
+                        <li class="list-group-item">Office Address: [Address]</li>
+                    </ul>
+                </div>
+            </div>
+    
+        </div>
+  </body>
+

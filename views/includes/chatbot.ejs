@@ -1,0 +1,93 @@
+<!-- Chatbot Button -->
+<div id="chatbot">
+    <i class="fa-solid fa-comments"></i>
+</div>
+
+<!-- Chatbot Window -->
+<div id="chatbotWindow">
+    <header>PMSSS Chatbot</header>
+    <div id="chatbotMessages"></div>
+    <div id="chatbotInput">
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<!-- Chatbot Script -->
+<script>
+    // Toggle chatbot window visibility
+    document.getElementById('chatbot').addEventListener('click', function() {
+        var chatbotWindow = document.getElementById('chatbotWindow');
+        chatbotWindow.style.display = chatbotWindow.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Enhanced chatbot logic
+    function sendMessage() {
+        var userInput = document.getElementById('userInput').value;
+        var chatbotMessages = document.getElementById('chatbotMessages');
+        
+        if (userInput.trim() !== '') {
+            var userMessage = `<div><strong>You:</strong> ${userInput}</div>`;
+            chatbotMessages.innerHTML += userMessage;
+
+            // Clear the input
+            document.getElementById('userInput').value = '';
+
+            // Add a typing indicator
+            var typingIndicator = `<div id="typingIndicator"><em>Bot is typing...</em></div>`;
+            chatbotMessages.innerHTML += typingIndicator;
+
+            // Scroll to the latest message
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+            // Simulate a delay for the bot's response
+            setTimeout(function() {
+                // Remove the typing indicator
+                var indicator = document.getElementById('typingIndicator');
+                if (indicator) {
+                    indicator.remove();
+                }
+
+                // Example response logic
+                var botResponse = generateResponse(userInput);
+                chatbotMessages.innerHTML += `<div><strong>Bot:</strong> ${botResponse}</div>`;
+
+                // Scroll to the latest message
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }, 1000);
+        }
+    }
+
+    // Example function to generate responses based on user input
+    function generateResponse(userInput) {
+        userInput = userInput.toLowerCase();
+        if (userInput.includes('scholarship status')) {
+            return 'You can check your scholarship status by logging into your student account.';
+        } else if (userInput.includes('document submission')) {
+            return 'Please ensure your documents are in PDF format and upload them through the student portal.';
+        } else if (userInput.includes('contact')) {
+            return 'You can reach out to us via the Contact Us section at the bottom of the page.';
+        } else if (userInput.includes('help')) {
+            return 'How can I assist you further? You can ask about scholarship status, document submission, or contact details.';
+        } else if (userInput.includes('eligibility')) {
+            return 'To check your scholarship eligibility, please refer to the eligibility criteria section on the scholarship page.';
+        } else if (userInput.includes('application deadline')) {
+            return 'The application deadline is listed on the scholarship homepage. Make sure to apply before the specified date!';
+        } else if (userInput.includes('status of application')) {
+            return 'You can check the status of your application by logging into your student account and navigating to the application section.';
+        } else if (userInput.includes('technical issues')) {
+            return 'For technical issues, please contact our support team through the Help section or email us at support@example.com.';
+        } else if (userInput.includes('feedback')) {
+            return 'We appreciate your feedback! You can submit it through the Feedback form available in the Contact Us section.';
+        } else if (userInput.includes('update information')) {
+            return 'To update your information, please log in to your account and navigate to the Profile section.';
+        } else {
+            return 'I\'m sorry, I didn\'t understand that. Could you please rephrase your question?';
+        }
+    }
+</script>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -1,0 +1,270 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+  <!-- header -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="/images/file.png" alt="logo" class="navbar">
+            <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/login/student/dashboard">Home</a>
+                </li>
+                <li class="nav-item">
+                    <div class="notifications-center pt-1 me-4 ms-4 text-center">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i> Notifications
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+                                <li><a class="dropdown-item" href="#">New scholarship update available</a></li>
+                                <li><a class="dropdown-item " href="#">New announcement: <br> Upcoming deadlines</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">View all notifications</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                    </a>
+                    <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>    
+</header>
+<%- include("../includes/flash.ejs") %>
+  <div class="container my-5">
+    <h3 class="text-center mb-3">Upload Documents</h3>
+  <form action="/login/student/upload" method="post" enctype="multipart/form-data">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
+      
+      <div class="col mt-1 mb-1">
+        <div class="row">
+          <select class="form-select" name="type" id="type" aria-label="Default select example">
+          <option selected>Personal Identification</option>
+          <option value="Aadhaar Card">Aadhaar Card*
+            <% if (submittedDocuments['Aadhaar Card']){ %>
+            &#10003;
+            <% } %>
+          </option>
+          <option value="Passport">Passport (if available)</option>
+          <option value="Domicile Certificate">Domicile Certificate*
+            <% if (submittedDocuments['Domicile Certificate']){ %>
+              &#10003;
+              <% } %>
+          </option>
+          <option value="ID card">ID Card* 
+            <% if (submittedDocuments['ID card']){ %>
+              &#10003;
+              <% } %>
+          </option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="input-group">
+          <input type="file" class="form-control " id="inputGroupFile04" name="Document[url]"aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
+          <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">
+            <% if (submittedDocuments['Domicile Certificate'] && submittedDocuments['Aadhaar Card'] && submittedDocuments['ID card']){ %>
+            &#10003;
+            <% } else { %> Upload <% } %>
+          </button>
+        </div>
+      </div>
+    </div>
+</form>
+<form action="/login/student/upload" method="post" enctype="multipart/form-data">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
+    
+    <div class="col mt-1 mb-1">
+      <div class="row">
+        <select class="form-select" name="type" id="type" aria-label="Default select example">
+        <option selected>Academic Documents</option>
+        <option value="Mark Sheets">Mark Sheets*
+          <% if (submittedDocuments['Mark Sheets']){ %>
+            &#10003;
+            <% } %>
+        </option>
+        <option value="certificate">Certificate*
+          <% if (submittedDocuments['Certificate']){ %>
+            &#10003;
+            <% } %>
+        </option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group">
+        <input type="file" class="form-control " id="inputGroupFile04" name="Document[url]"aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
+        <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">
+          <% if (submittedDocuments['Certificate'] && submittedDocuments['Mark Sheets']){ %>
+          &#10003;
+          <% } else { %> Upload <% } %>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+<form action="/login/student/upload" method="post" enctype="multipart/form-data">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
+    
+    <div class="col mt-1 mb-1">
+      <div class="row">
+        <select class="form-select" name="type" id="type" aria-label="Default select example">
+        <option selected>Proof of Admission</option>
+        <option value="Admission Letter">Admission Letter*
+          <% if (submittedDocuments['Admission Letter']){ %>
+            &#10003;
+            <% } %>
+        </option>
+        <option value="Course Registration">Course Registration*
+          <% if (submittedDocuments['Course Registration']){ %>
+            &#10003;
+            <% } %>
+        </option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group">
+        <input type="file" class="form-control " id="inputGroupFile04" name="Document[url]"aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
+        <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">
+          <% if (submittedDocuments['Admission Letter'] && submittedDocuments['Course Registration']){ %>
+          &#10003;
+          <% } else { %> Upload <% } %>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+<form action="/login/student/upload" method="post" enctype="multipart/form-data">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
+    
+    <div class="col mt-1 mb-1">
+      <div class="row">
+        <select class="form-select" name="type" id="type" aria-label="Default select example">
+        <option selected>Financial Documents</option>
+        <option value="Income Certificate">Income Certificate*
+          <% if (submittedDocuments['Income Certificate']){ %>
+            &#10003;
+            <% } %>
+        </option>
+        <option value="Bank Statement">Bank Statement</option>
+        <option value="Fee Receipt">Fee Receipt*
+          <% if (submittedDocuments['Fee Receipt']){ %>
+            &#10003;
+            <% } %>
+        </option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group">
+        <input type="file" class="form-control " id="inputGroupFile04" name="Document[url]"aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
+        <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">
+          <% if (submittedDocuments['Income Certificate'] && submittedDocuments['Fee Receipt']){ %>
+          &#10003;
+          <% } else { %> Upload <% } %>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+<form action="/login/student/upload" method="post" enctype="multipart/form-data">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
+    
+    <div class="col mt-1 mb-1">
+      <div class="row">
+        <select class="form-select" name="type" id="type" aria-label="Default select example">
+        <option selected>Caste/Category Certificate (if applicable)</option>
+        <option value="Select Caste Category">Select Caste Category</option>
+        <option value="Bank Statement">Bank Statement</option>
+        <option value="Upload Caste Certificate">Upload Caste Certificate</option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group">
+        <input type="file" class="form-control " id="inputGroupFile04" name="Document[url]"aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
+        <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">
+          Upload
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+<form action="/login/student/upload" method="post" enctype="multipart/form-data">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
+    
+    <div class="col mt-1 mb-1">
+      <div class="row">
+        <select class="form-select" name="type" id="type" aria-label="Default select example">
+        <option selected>Other Supporting Documents (not compulsury)</option>
+        <option value="Recommendation Letters">Recommendation Letters</option>
+        <option value="Personal Statement or Essay">Personal Statement or Essay</option>
+        <option value="Other Documents">Other Documents</option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group">
+        <input type="file" class="form-control " id="inputGroupFile04" name="Document[url]"aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
+        <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">
+          Upload
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+  </div>
+  <!-- Guidelines Section -->
+<div class="container mt-5 mb-3">
+  <h3 class="text-center">Upload Guidelines</h3>
+  <div class="guidelines">
+      <h4 class="text-center text-warning mb-3">Supported file types: png, jpg, jpeg, pdf</h4>
+      <ul>
+          <li><strong>Aadhaar Card:</strong> Upload a clear, legible copy. Max size: 5MB.</li>
+          <li><strong>Passport:</strong> If available, provide a scanned copy. Max size: 5MB.</li>
+          <li><strong>Driver’s License:</strong> Upload your driver’s license if available. Max size: 5MB.</li>
+          <li><strong>Academic Documents:</strong>
+              <ul>
+                  <li>Mark Sheets (recent academic years). Max size: 10MB.</li>
+                  <li>Certificates (degrees, diplomas, achievements). Max size: 10MB.</li>
+              </ul>
+          </li>
+          <li><strong>Proof of Admission:</strong>
+              <ul>
+                  <li>Admission Letter. Max size: 5MB.</li>
+                  <li>Course Registration. Max size: 5MB.</li>
+              </ul>
+          </li>
+          <li><strong>Financial Documents:</strong>
+              <ul>
+                  <li>Income Certificate. Max size: 5MB.</li>
+                  <li>Bank Statement. Max size: 5MB.</li>
+                  <li>Fee Receipt. Max size: 5MB.</li>
+              </ul>
+          </li>
+          <li><strong>Caste/Category Certificate:</strong> Upload the relevant caste or category certificate if applicable. Max size: 5MB.</li>
+          <li><strong>Other Supporting Documents:</strong>
+              <ul>
+                  <li>Recommendation Letters. Max size: 5MB.</li>
+                  <li>Personal Statement or Essay. Max size: 5MB.</li>
+                  <li>Recent Passport-sized Photograph. Max size: 3MB.</li>
+              </ul>
+          </li>
+      </ul>
+  </div>
+</div>
+</body>

@@ -1,0 +1,140 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    <!-- header -->
+<header class="sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <img src="/images/file.png" alt="logo" class="navbar">
+        <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#tasks">Tasks</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                </a>
+                <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+        </div>   
+    </div>
+</nav>
+</header>
+<div class="container mt-4">
+    <!-- Recent Activity Section -->
+<div class="container mt-4">
+<div class="card mb-4">
+    <div class="card-body">
+        <h4 class="text-center">Recent Activity</h4>
+        <ul class="list-group">
+            <!-- Example Activity Item -->
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>Disbursement for <strong>ID: 23101C0037</strong> completed</span>
+                <span class="badge bg-success rounded-pill">Completed</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>Income Documents for <strong>ID: 23101B0008</strong> approved</span>
+                <span class="badge bg-primary rounded-pill">Approved</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>Disbursement for <strong>ID: 23101B0015</strong> rejected</span>
+                <span class="badge bg-danger rounded-pill">Rejected</span>
+            </li>
+            <!-- Add more items as needed -->
+        </ul>
+    </div>
+</div>
+</div>
+<!-- Cards -->
+<div class="container mt-5">
+<div class="row justify-content-evenly">
+    <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+        <a href="/login/finance/applRecived">
+            <img src="/images/apphistory.jpg" class="card-img-top rounded-img" alt="Applications Received">
+            <div class="card-body">
+                <h5 class="card-title text-center">Applications Received</h5>
+            </div>
+        </a>
+    </div>
+    <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+        <a href="/login/finance/pendingDisbursements">
+            <img src="/images/pending.jpg" class="card-img-top rounded-img" alt="Pending Disbursements">
+            <div class="card-body">
+                <h5 class="card-title text-center">Pending Disbursements</h5>
+            </div>
+        </a>
+    </div>
+    <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+        <a href="/login/finance/disbursementsCompleted">
+            <img src="/images/completed.jpg" class="card-img-top rounded-img" alt="Disbursements Completed">
+            <div class="card-body">
+                <h5 class="card-title text-center">Disbursements Completed</h5>
+            </div>
+        </a>
+    </div>
+    <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+        <a href="/login/finance/total">
+            <img src="/images/total.jpg" class="card-img-top rounded-img" alt="Total Funds Disbursed">
+            <div class="card-body">
+                <h5 class="card-title text-center">Total Funds Disbursed</h5>
+            </div>
+        </a>
+    </div>
+     <!-- manage tasks -->
+    <div id="tasks" class="mt-5">
+        <h3 class="text-center">Task Management</h3>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">My Tasks</h5>
+                <ul class="list-group" id="taskList">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Task 1
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Task 2
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </li>
+                </ul>
+                <input type="text" class="form-control mt-3" placeholder="Add new task" id="newTaskInput">
+                <button class="btn btn-primary mt-2" id="addTaskButton">Add Task</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+    <script>
+            document.getElementById('addTaskButton').addEventListener('click', function() {
+                var taskInput = document.getElementById('newTaskInput');
+                var taskList = document.getElementById('taskList');
+                var newTask = taskInput.value.trim();
+                if (newTask) {
+                    var listItem = document.createElement('li');
+                    listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+                    listItem.innerHTML = newTask + ' <button class="btn btn-danger btn-sm">Delete</button>';
+                    taskList.appendChild(listItem);
+                    taskInput.value = '';
+                }
+            });
+        
+            document.getElementById('taskList').addEventListener('click', function(e) {
+                if (e.target.classList.contains('btn-danger')) {
+                    e.target.parentElement.remove();
+                }
+            });
+    </script>
+         
+</body>

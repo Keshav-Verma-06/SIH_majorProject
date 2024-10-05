@@ -1,0 +1,169 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+ body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        .card-header:hover {
+            background-color: #0056b3;
+        }
+        .report-card {
+            margin-bottom: 20px;
+        }
+        .datepicker {
+            z-index: 1050 !important; /* Fix datepicker dropdown issue */
+        }
+</style>
+
+<body>
+       <!-- header -->
+<header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="/images/file.png" alt="logo" class="navbar">
+            <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/login/sag/dashboard">Home</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                    </a>
+                    <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            </div>   
+        </div>
+    </nav>
+    </header>
+    <!--Generate report-->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Generate Reports</h1>
+
+        <!-- Report Generation Form -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title">Generate New Report</h5>
+            </div>
+            <div class="card-body">
+                <form id="generate-report-form">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="reportType" class="form-label">Report Type</label>
+                            <select id="reportType" class="form-select">
+                                <option value="">Select Report Type</option>
+                                <option value="totalFunds">Total Funds Disbursed</option>
+                                <option value="pendingDisbursement">Pending Disbursement</option>
+                                <option value="completedDisbursement">Completed Disbursement</option>
+                                <option value="applicationsReceived">Applications Received</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="dateRange" class="form-label">Date Range</label>
+                            <div class="input-group">
+                                <input type="text" id="startDate" class="form-control datepicker" placeholder="Start Date: yyyy-mm-dd">
+                                <input type="text" id="endDate" class="form-control datepicker" placeholder="End Date: yyyy-mm-dd">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Generate Report</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Generated Reports List -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Generated Reports</h5>
+            </div>
+            <div class="card-body">
+                <div id="reports-list">
+                    <!-- Reports will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+    const reportTypeSelect = document.querySelector('#reportType');
+    const startDateInput = document.querySelector('#startDate');
+    const endDateInput = document.querySelector('#endDate');
+    const reportsList = document.querySelector('#reports-list');
+
+    // Initialize date pickers
+    $(startDateInput).datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true
+    });
+
+    $(endDateInput).datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true
+    });
+
+    // Handle form submission
+    document.querySelector('#generate-report-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const reportType = reportTypeSelect.value;
+        const startDate = startDateInput.value;
+        const endDate = endDateInput.value;
+
+        if (!reportType || !startDate || !endDate) {
+            alert('Please fill out all fields.');
+            return;
+        }
+
+        // Simulate report generation (replace with actual API call)
+        const reportId = Math.random().toString(36).substring(2, 15);
+        const report = {
+            id: reportId,
+            type: reportType,
+            generatedAt: new Date().toLocaleDateString(),
+            startDate: startDate,
+            endDate: endDate
+        };
+
+        // Add report to list
+        const reportCard = document.createElement('div');
+        reportCard.classList.add('report-card');
+        reportCard.innerHTML = `
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Report ID: ${report.id}</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Type:</strong> ${report.type}</p>
+                    <p><strong>Generated At:</strong> ${report.generatedAt}</p>
+                    <p><strong>Date Range:</strong> ${report.startDate} to ${report.endDate}</p>
+                    <a href="#" class="btn btn-primary">View Report</a>
+                    <a href="#" class="btn btn-secondary">Download Report</a>
+                </div>
+            </div>
+        `;
+
+        reportsList.appendChild(reportCard);
+    });
+});
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+</body>

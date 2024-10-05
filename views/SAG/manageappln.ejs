@@ -1,0 +1,188 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+       <!-- header -->
+<header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="/images/file.png" alt="logo" class="navbar">
+            <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/login/sag/dashboard">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <div class="notifications-center pt-1 me-4 ms-4 text-center">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i> Notifications
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+                                <li><a class="dropdown-item" href="#">New scholarship update available</a></li>
+                                <li><a class="dropdown-item " href="#">New announcement: <br> Upcoming deadlines</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">View all notifications</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                    </a>
+                    <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            </div>   
+        </div>
+    </nav>
+</header>
+<div class="container mt-4">
+
+        <!-- Main Content -->
+    <div class="container mt-4">
+        <!-- Application Overview -->
+        <div class="application-overview mb-4">
+            <h2 class="overview-title">Application Overview</h2>
+            <div class="row">
+                <div class="col-md-3 mb-2">
+                    <div class="overview-card bg-light p-3 rounded">
+                        <h5>Total Applications</h5>
+                        <p id="total-applications">150</p> <!-- Example value, update dynamically -->
+                    </div>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <div class="overview-card bg-light p-3 rounded">
+                        <h5>Pending Applications</h5>
+                        <p id="pending-applications">30</p> <!-- Example value, update dynamically -->
+                    </div>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <div class="overview-card bg-light p-3 rounded">
+                        <h5>Approved Applications</h5>
+                        <p id="approved-applications">100</p> <!-- Example value, update dynamically -->
+                    </div>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <div class="overview-card bg-light p-3 rounded">
+                        <h5>Rejected Applications</h5>
+                        <p id="rejected-applications">20</p> <!-- Example value, update dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Filters and Search -->
+    <div class="filters-search mb-4">
+        <div class="row">
+            <div class="col-md-4 mb-2">
+                <input type="text" class="form-control" id="search-bar" placeholder="Search by name, ID, or other criteria">
+            </div>
+            <div class="col-md-4 mb-2">
+                <select class="form-select" id="status-filter">
+                    <option value="">All Statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-2">
+                <input type="date" class="form-control" id="date-filter">
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Table -->
+    <div class="application-table">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Applicant Name</th>
+                    <th scope="col">Application ID</th>
+                    <th scope="col">Submission Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example rows, replace with dynamic content -->
+                <tr>
+                    <td>Adarsh Dubey</td>
+                    <td>23101C0037</td>
+                    <td>2024-08-25</td>
+                    <td>
+                        <button class="btn btn-info btn-sm">View Details</button>
+                        <button class="btn btn-success btn-sm">Approve</button>
+                        <button class="btn btn-danger btn-sm">Reject</button>
+                        <button class="btn btn-warning btn-sm">Request Info</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Keshav Verma</td>
+                    <td>23101B0003</td>
+                    <td>2024-08-24</td>
+                    <td>
+                        <button class="btn btn-info btn-sm">View Details</button>
+                        <button class="btn btn-success btn-sm">Approve</button>
+                        <button class="btn btn-danger btn-sm">Reject</button>
+                        <button class="btn btn-warning btn-sm">Request Info</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Madhur Patil</td>
+                    <td>23101B0008</td>
+                    <td>2024-08-19</td>
+                    <td>
+                        <button class="btn btn-info btn-sm">View Details</button>
+                        <button class="btn btn-success btn-sm">Approve</button>
+                        <button class="btn btn-danger btn-sm">Reject</button>
+                        <button class="btn btn-warning btn-sm">Request Info</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Akanksha Jadhav</td>
+                    <td>23101B00##</td>
+                    <td>2024-08-01</td>
+                    <td>
+                        <button class="btn btn-info btn-sm">View Details</button>
+                        <button class="btn btn-success btn-sm">Approve</button>
+                        <button class="btn btn-danger btn-sm">Reject</button>
+                        <button class="btn btn-warning btn-sm">Request Info</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Samiksha Dalvi</td>
+                    <td>23101B00##</td>
+                    <td>2024-08-15</td>
+                    <td>
+                        <button class="btn btn-info btn-sm">View Details</button>
+                        <button class="btn btn-success btn-sm">Approve</button>
+                        <button class="btn btn-danger btn-sm">Reject</button>
+                        <button class="btn btn-warning btn-sm">Request Info</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Vaibhav Bedre</td>
+                    <td>23101B0024</td>
+                    <td>2024-08-20</td>
+                    <td>
+                        <button class="btn btn-info btn-sm">View Details</button>
+                        <button class="btn btn-success btn-sm">Approve</button>
+                        <button class="btn btn-danger btn-sm">Reject</button>
+                        <button class="btn btn-warning btn-sm">Request Info</button>
+                    </td>
+                </tr>
+                <!-- More rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</div>
+  
+</body>
+

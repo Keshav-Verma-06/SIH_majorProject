@@ -1,0 +1,153 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    <!-- header -->
+<header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="/images/file.png" alt="logo" class="navbar">
+            <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tasks">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <div class="notifications-center pt-1 me-4 ms-4 text-center">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i> Notifications
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+                                <li><a class="dropdown-item" href="#">New scholarship update available</a></li>
+                                <li><a class="dropdown-item " href="#">New announcement: <br> Upcoming deadlines</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">View all notifications</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                    </a>
+                    <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            </div>   
+        </div>
+    </nav>
+</header>
+<div class="container mt-2">
+   <!-- Recent activities -->
+    <div class="container mt-2">
+        <h3 class="text-center">Recent Activity</h3>
+        <ul class="list-group">
+            <li class="list-group-item">
+                New application received from 
+                <a href="#" target="_blank" class="fw-bold text-primary">Adarsh Dubey</a>
+            </li>
+            <li class="list-group-item">
+                Scholarship approval for 
+                <a href="#" target="_blank" class="fw-bold text-primary">Keshav Verma</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+      <!-- Cards -->
+    <div class="container mt-5">
+        <div class="row justify-content-evenly">
+            <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+                <a href="/login/sag/manageappln">
+                    <img src="/images/manageapp.jpg" class="card-img-top rounded-img" alt="Manage Applications">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Manage Applications</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+                <a href="/login/sag/reviewreports">
+                    <img src="/images/reviewrep.jpg" class="card-img-top rounded-img" alt="Review Reports">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Review Reports</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+                <a href="/login/sag/statistics">
+                    <img src="/images/statistics.jpg" class="card-img-top rounded-img" alt="Statistics">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Statistics</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+                <a href="/login/sag/generateReport">
+                    <img src="/images/generatereports.jpg" class="card-img-top rounded-img" alt="Generate Reports">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Generate Reports</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="card custom-card col-lg-3 col-md-4 col-sm-6 mb-4" style="width: 18rem;">
+                <a href="/login/sag/feedback">
+                    <img src="/images/feedback.jpg" class="card-img-top rounded-img" alt="Feedback">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Feedback</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+         <!-- manage tasks -->
+        <div id="tasks" class="mt-5">
+            <h3 class="text-center">Task Management</h3>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">My Tasks</h5>
+                    <ul class="list-group" id="taskList">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Task 1
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Task 2
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </li>
+                    </ul>
+                    <input type="text" class="form-control mt-3" placeholder="Add new task" id="newTaskInput">
+                    <button class="btn btn-primary mt-2 " id="addTaskButton">Add Task</button>
+                </div>
+            </div>
+        </div>
+</div>        
+            <script>
+                document.getElementById('addTaskButton').addEventListener('click', function() {
+                    var taskInput = document.getElementById('newTaskInput');
+                    var taskList = document.getElementById('taskList');
+                    var newTask = taskInput.value.trim();
+                    if (newTask) {
+                        var listItem = document.createElement('li');
+                        listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+                        listItem.innerHTML = newTask + ' <button class="btn btn-danger btn-sm">Delete</button>';
+                        taskList.appendChild(listItem);
+                        taskInput.value = '';
+                    }
+                });
+            
+                document.getElementById('taskList').addEventListener('click', function(e) {
+                    if (e.target.classList.contains('btn-danger')) {
+                        e.target.parentElement.remove();
+                    }
+                });
+            </script>
+</body>

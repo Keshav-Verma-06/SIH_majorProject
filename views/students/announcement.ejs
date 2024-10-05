@@ -1,0 +1,87 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+        <!-- header -->
+        <header class="sticky-top">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <img src="/images/file.png" alt="logo" class="navbar">
+                    <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="/login/student/dashboard">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="notifications-center pt-1 me-4 ms-4 text-center">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-bell"></i> Notifications
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+                                        <li><a class="dropdown-item" href="#">New scholarship update available</a></li>
+                                        <li><a class="dropdown-item " href="#">New announcement: <br> Upcoming deadlines</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">View all notifications</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                            </a>
+                            <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>    
+        </header>
+        <%- include("../includes/flash.ejs") %>
+    <!-- Announcements Section -->
+<div class="container">
+    <div class="announcements-section mt-5">
+        <h2 class="section-title">Announcements</h2>
+
+        <div class="announcement mt-3 d-flex align-items-start">
+            <img src="/images/new (1).gif" class="img-fluid me-2" width="43" height="20">
+            <p>Ensure to submit all required documents by <strong>September 10, 2024</strong>. Late submissions will not be accepted. <span class="date">Posted on: August 25, 2024</span></p>
+        </div>
+
+        <div class="announcement mt-3 d-flex align-items-start">
+            <img src="/images/new (1).gif" class="img-fluid me-2" width="43" height="20">
+            <p>Join our upcoming webinar on <strong>September 1, 2024</strong>, to learn how to prepare and submit your documents effectively. <span class="date">Posted on: August 20, 2024</span></p>
+        </div>
+
+        <div class="announcement mt-3 d-flex align-items-start">
+            <img src="/images/new (1).gif" class="img-fluid me-2" width="43" height="20">
+            <p>Our system will be under maintenance on <strong>August 30, 2024</strong>, from 12:00 AM to 4:00 AM. <span class="date">Posted on: August 18, 2024</span></p>
+        </div>
+
+        <div class="announcement mt-3 d-flex align-items-start">
+            <img src="/images/new (1).gif" class="img-fluid me-2" width="43" height="20">
+            <p>The guidelines for the PMSSS scholarship have been updated. Please review the new guidelines. <span class="date">Posted on: August 15, 2024</span></p>
+        </div>
+
+        <div class="announcement mt-3 d-flex align-items-start">
+            <img src="/images/new (1).gif" class="img-fluid me-2" width="43" height="20">
+            <p>An orientation session for new scholarship recipients will be held on <strong>September 5, 2024</strong>. Attendance is mandatory. <span class="date">Posted on: August 12, 2024</span></p>
+        </div>
+
+        <!-- Additional announcements can be added here -->
+    </div>
+</div>
+
+
+            </div>
+        
+            
+            
+
+</body>

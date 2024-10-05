@@ -1,0 +1,148 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+       <!-- header -->
+<header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="/images/file.png" alt="logo" class="navbar">
+            <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/login/sag/dashboard">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <div class="notifications-center pt-1 me-4 ms-4 text-center">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i> Notifications
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+                                <li><a class="dropdown-item" href="#">New scholarship update available</a></li>
+                                <li><a class="dropdown-item " href="#">New announcement: <br> Upcoming deadlines</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">View all notifications</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                    </a>
+                    <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            </div>   
+        </div>
+    </nav>
+</header>
+<div class="container mt-4">
+                    
+                    <!-- Review Reports Section -->
+    <div class="container mt-4">
+        <h2>Review Reports</h2>
+        
+        <!-- Report Overview -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Reports</h5>
+                        <p class="card-text" id="total-reports">100</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Pending Reports</h5>
+                        <p class="card-text" id="pending-reports">20</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Reviewed Reports</h5>
+                        <p class="card-text" id="reviewed-reports">80</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filters -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="search-bar" placeholder="Search reports...">
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary w-100" id="filter-btn">Filter</button>
+            </div>
+        </div>
+
+        <!-- Reports Table -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Document Name</th>
+                    <th>Submission Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="reports-table-body">
+                <!-- Table rows will be dynamically populated -->
+                <tr>
+                    <td>23101C0037</td>
+                    <td>Aadhaar Card</td>
+                    <td>2024-08-01</td>
+                    <td>Pending</td>
+                    <td>
+                        <button class="btn btn-info btn-sm">View Document</button>
+                        <button class="btn btn-success btn-sm">Approve</button>
+                        <button class="btn btn-danger btn-sm">Reject</button>
+                        <button class="btn btn-warning btn-sm">Request More Info</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>23101C0003</td>
+                    <td>Admission Letter</td>
+                    <td>2024-08-15</td>
+                    <td>Pending</td>
+                    <td>
+                        <button class="btn btn-info btn-sm">View Document</button>
+                        <button class="btn btn-success btn-sm">Approve</button>
+                        <button class="btn btn-danger btn-sm">Reject</button>
+                        <button class="btn btn-warning btn-sm">Request More Info</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>23101B0008</td>
+                    <td>Caste Certificate</td>
+                    <td>2024-08-05</td>
+                    <td>Pending</td>
+                    <td>
+                        <button class="btn btn-info btn-sm">View Document</button>
+                        <button class="btn btn-success btn-sm">Approve</button>
+                        <button class="btn btn-danger btn-sm">Reject</button>
+                        <button class="btn btn-warning btn-sm">Request More Info</button>
+                    </td>
+                </tr>
+                <!-- More rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</div>
+                  
+</body>
+
+
+    

@@ -1,0 +1,143 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+
+
+#pending-disbursement {
+    margin: 20px;
+}
+
+.application {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+button.process-disbursement-btn {
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button.process-disbursement-btn:hover {
+    background-color: #45a049;
+}
+</style>
+
+<body>
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <img src="/images/file.png" alt="logo" class="navbar">
+                <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/login/finance/dashboard">Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                        </a>
+                        <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>   
+            </div>
+        </nav>
+        </header>
+            <!--pending disbursement-->
+            <div class="container mt-2">
+                 <h2>Pending Disbursements</h2>        
+                <!-- Summary Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card summary-card shadow-sm border-0">
+                            <div class="card-body text-center">
+                                <h5 class="card-title text-uppercase text-muted">Total Pending</h5>
+                                <p class="card-text display-6 fw-bold text-dark" id="totalPending">₹2,00,00,000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card summary-card shadow-sm border-0">
+                            <div class="card-body text-center">
+                                <h5 class="card-title text-uppercase text-muted">Pending Students</h5>
+                                <p class="card-text display-6 fw-bold text-dark" id="pendingStudents">400</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card summary-card shadow-sm border-0">
+                            <div class="card-body text-center">
+                                <h5 class="card-title text-uppercase text-muted">Average Pending</h5>
+                                <p class="card-text display-6 fw-bold text-dark" id="averagePendingAmount">₹50,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Filters -->
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <input type="text" id="searchInput" class="form-control border-primary" placeholder="Search by Student Name...">
+                    </div>
+                    <div class="col-md-4">
+                        <select id="statusFilter" class="form-select border-primary">
+                            <option value="">Filter by Status</option>
+                            <option value="Pending Approval">Pending Approval</option>
+                            <option value="Awaiting Documents">Awaiting Documents</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary w-100" onclick="applyFilters()">Apply Filters</button>
+                    </div>
+                </div>
+        
+                <!-- Table -->
+                <div class="table-responsive rounded shadow-sm">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Pending Amount</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Date of Application</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingTable" class="text-center">
+                            <!-- Sample Rows -->
+                            <tr>
+                                <td>1</td>
+                                <td>Sakshi Mehta</td>
+                                <td>₹55,000</td>
+                                <td class="text-warning fw-bold">Pending Approval</td>
+                                <td>15-Aug-2024</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Aman Singh</td>
+                                <td>₹40,000</td>
+                                <td class="text-warning fw-bold">Awaiting Documents</td>
+                                <td>10-Aug-2024</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+</body>

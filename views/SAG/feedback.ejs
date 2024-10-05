@@ -1,0 +1,108 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+    #feedback-section {
+    margin: 20px;
+}
+
+.application-feedback {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+textarea.feedback-input {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+}
+
+button.submit-feedback-btn {
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button.submit-feedback-btn:hover {
+    background-color: #45a049;
+}
+</style>
+<body>
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <img src="/images/file.png" alt="logo" class="navbar">
+                <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/login/sag/dashboard">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="notifications-center pt-1 me-4 ms-4 text-center">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-bell"></i> Notifications
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+                                    <li><a class="dropdown-item" href="#">New scholarship update available</a></li>
+                                    <li><a class="dropdown-item " href="#">New announcement: <br> Upcoming deadlines</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">View all notifications</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                        </a>
+                        <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>   
+            </div>
+        </nav>
+    </header>
+    <!--feedback-->
+<div id="feedback-section">
+    <h2>Feedback on Rejected Documents</h2>
+
+    <div class="application-feedback" id="application-1">
+        <h3>Application 1</h3>
+        <p>Document: Transcript.pdf</p>
+        <textarea class="feedback-input" placeholder="Provide feedback here..."></textarea>
+        <button class="submit-feedback-btn">Submit Feedback</button>
+    </div>
+    
+    <!-- Repeat for other applications and documents -->
+    
+</div>
+<script>
+    //javascript
+document.addEventListener('DOMContentLoaded', function () {
+    // Add event listener to Submit Feedback buttons
+    document.querySelectorAll('.submit-feedback-btn').forEach(function(button) {
+        button.addEventListener('click', function () {
+            const applicationId = this.parentElement.id;
+            const feedback = this.previousElementSibling.value;
+            
+            if (feedback) {
+                submitFeedback(applicationId, feedback);
+            } else {
+                alert("Please enter feedback before submitting.");
+            }
+        });
+    });
+});
+
+</script>
+</body>

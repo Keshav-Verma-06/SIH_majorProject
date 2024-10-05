@@ -1,0 +1,185 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+   body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .search-bar {
+            margin: 20px 0;
+        }
+        .application-card {
+            transition: box-shadow 0.3s ease;
+        }
+        .application-card:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .expand-section {
+            display: none;
+        }
+        .card-header {
+            cursor: pointer;
+        }
+</style>
+<body>
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <img src="/images/file.png" alt="logo" class="navbar">
+                <a class="navbar-brand ms-3" href="#">Prime Minister's Special Scholarship Scheme (PMSSS)</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/login/finance/dashboard">Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/images/admin.jpg" alt="User Logo" class="rounded-circle" width="30" height="30"> <!-- Replace with your logo image -->
+                        </a>
+                        <ul class="dropdown-menu me-3" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Manage <br> Account</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>   
+            </div>
+        </nav>
+    </header>
+        <!--application recieved-->
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">Applications Received</h1>
+    
+            <!-- Search and Filter Section -->
+            <div class="row search-bar">
+                <div class="col-md-4">
+                    <input type="text" id="search" class="form-control" placeholder="Search by Student Name or ID">
+                </div>
+                <div class="col-md-4">
+                    <select id="filterCourse" class="form-select">
+                        <option value="">All Courses</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Medical">Medical</option>
+                        <option value="Science">Science</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select id="filterYear" class="form-select">
+                        <option value="">All Years</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Applications List -->
+            <div id="applications-container" class="row">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+    const applicationsContainer = document.querySelector('#applications-container');
+    const searchInput = document.querySelector('#search');
+    const filterCourse = document.querySelector('#filterCourse');
+    const filterYear = document.querySelector('#filterYear');
+
+    // Sample data to simulate fetched applications (replace with actual API data)
+    const applications = [
+        {
+            studentName: 'John Doe',
+            studentID: '12345',
+            course: 'Engineering',
+            year: '1st Year',
+            status: 'Pending',
+            details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        },
+        {
+            studentName: 'Jane Smith',
+            studentID: '67890',
+            course: 'Medical',
+            year: '2nd Year',
+            status: 'Approved',
+            details: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+        },
+        // Add more applications as needed
+    ];
+
+    const displayApplications = (filteredApplications) => {
+        applicationsContainer.innerHTML = '';
+        if (filteredApplications.length === 0) {
+            applicationsContainer.innerHTML = `<p class="text-center text-muted">No applications found.</p>`;
+            return;
+        }
+
+        filteredApplications.forEach(application => {
+            const card = document.createElement('div');
+            card.classList.add('col-md-4', 'mb-4');
+
+            card.innerHTML = `
+                <div class="card application-card">
+                    <div class="card-header" data-toggle="collapse" data-target="#details-${application.studentID}">
+                        <h5 class="card-title">${application.studentName}</h5>
+                        <p class="card-text text-muted">Student ID: ${application.studentID}</p>
+                    </div>
+                    <div class="card-body collapse expand-section" id="details-${application.studentID}">
+                        <p><strong>Course:</strong> ${application.course}</p>
+                        <p><strong>Year:</strong> ${application.year}</p>
+                        <p><strong>Status:</strong> ${application.status}</p>
+                        <p><strong>Details:</strong> ${application.details}</p>
+                    </div>
+                </div>
+            `;
+
+            applicationsContainer.appendChild(card);
+
+            // Toggle section visibility
+            card.querySelector('.card-header').addEventListener('click', () => {
+                const section = document.querySelector(`#details-${application.studentID}`);
+                $(section).collapse('toggle');
+            });
+        });
+    };
+
+    // Initial display of applications
+    displayApplications(applications);
+
+    // Search functionality
+    searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredApplications = applications.filter(app => 
+            app.studentName.toLowerCase().includes(searchTerm) || 
+            app.studentID.includes(searchTerm)
+        );
+        displayApplications(filteredApplications);
+    });
+
+    // Filter by course
+    filterCourse.addEventListener('change', () => {
+        const selectedCourse = filterCourse.value;
+        const filteredApplications = selectedCourse ? 
+            applications.filter(app => app.course === selectedCourse) : 
+            applications;
+        displayApplications(filteredApplications);
+    });
+
+    // Filter by year
+    filterYear.addEventListener('change', () => {
+        const selectedYear = filterYear.value;
+        const filteredApplications = selectedYear ? 
+            applications.filter(app => app.year.includes(selectedYear)) : 
+            applications;
+        displayApplications(filteredApplications);
+    });
+});
+
+        </script>
+    
+</body>
