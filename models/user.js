@@ -4,7 +4,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  aadhaarNumber: { type: String }, // Optional for SAG and Finance Bureau members
+  aadhaarNumber: { type: String, unique: true }, // Optional for SAG and Finance Bureau members
   role: { type: String, enum: ['student', 'SAG Bureau', 'Finance Bureau'], default: 'student' },
   documents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Document' }],
   createdAt: { type: Date, default: Date.now },

@@ -43,146 +43,188 @@
         </div>
     </nav>
 </header>
+
 <div class="container mt-4">
 
-        <!-- Main Content -->
-    <div class="container mt-4">
-        <!-- Application Overview -->
-        <div class="application-overview mb-4">
-            <h2 class="overview-title">Application Overview</h2>
-            <div class="row">
-                <div class="col-md-3 mb-2">
-                    <div class="overview-card bg-light p-3 rounded">
-                        <h5>Total Applications</h5>
-                        <p id="total-applications">150</p> <!-- Example value, update dynamically -->
-                    </div>
-                </div>
-                <div class="col-md-3 mb-2">
-                    <div class="overview-card bg-light p-3 rounded">
-                        <h5>Pending Applications</h5>
-                        <p id="pending-applications">30</p> <!-- Example value, update dynamically -->
-                    </div>
-                </div>
-                <div class="col-md-3 mb-2">
-                    <div class="overview-card bg-light p-3 rounded">
-                        <h5>Approved Applications</h5>
-                        <p id="approved-applications">100</p> <!-- Example value, update dynamically -->
-                    </div>
-                </div>
-                <div class="col-md-3 mb-2">
-                    <div class="overview-card bg-light p-3 rounded">
-                        <h5>Rejected Applications</h5>
-                        <p id="rejected-applications">20</p> <!-- Example value, update dynamically -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Application Filters and Search -->
-    <div class="filters-search mb-4">
+    <!-- Main Content -->
+<div class="container mt-4">
+    <!-- Application Overview -->
+    <div class="application-overview mb-4">
+        <h2 class="overview-title">Application Overview</h2>
         <div class="row">
-            <div class="col-md-4 mb-2">
-                <input type="text" class="form-control" id="search-bar" placeholder="Search by name, ID, or other criteria">
+            <div class="col-md-3 mb-2">
+                <div class="overview-card bg-light p-3 rounded">
+                    <h5>Total Applications</h5>
+                    <p id="total-applications">150</p> <!-- Example value, update dynamically -->
+                </div>
             </div>
-            <div class="col-md-4 mb-2">
-                <select class="form-select" id="status-filter">
-                    <option value="">All Statuses</option>
-                    <option value="pending">Pending</option>
-                    <option value="approved">Approved</option>
-                    <option value="rejected">Rejected</option>
-                </select>
+            <div class="col-md-3 mb-2">
+                <div class="overview-card bg-light p-3 rounded">
+                    <h5>Pending Applications</h5>
+                    <p id="pending-applications">30</p> <!-- Example value, update dynamically -->
+                </div>
             </div>
-            <div class="col-md-4 mb-2">
-                <input type="date" class="form-control" id="date-filter">
+            <div class="col-md-3 mb-2">
+                <div class="overview-card bg-light p-3 rounded">
+                    <h5>Approved Applications</h5>
+                    <p id="approved-applications">100</p> <!-- Example value, update dynamically -->
+                </div>
+            </div>
+            <div class="col-md-3 mb-2">
+                <div class="overview-card bg-light p-3 rounded">
+                    <h5>Rejected Applications</h5>
+                    <p id="rejected-applications">20</p> <!-- Example value, update dynamically -->
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- Application Table -->
-    <div class="application-table">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Applicant Name</th>
-                    <th scope="col">Application ID</th>
-                    <th scope="col">Submission Date</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Example rows, replace with dynamic content -->
-                <tr>
-                    <td>Adarsh Dubey</td>
-                    <td>23101C0037</td>
-                    <td>2024-08-25</td>
-                    <td>
-                        <button class="btn btn-info btn-sm">View Details</button>
-                        <button class="btn btn-success btn-sm">Approve</button>
-                        <button class="btn btn-danger btn-sm">Reject</button>
-                        <button class="btn btn-warning btn-sm">Request Info</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Keshav Verma</td>
-                    <td>23101B0003</td>
-                    <td>2024-08-24</td>
-                    <td>
-                        <button class="btn btn-info btn-sm">View Details</button>
-                        <button class="btn btn-success btn-sm">Approve</button>
-                        <button class="btn btn-danger btn-sm">Reject</button>
-                        <button class="btn btn-warning btn-sm">Request Info</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Madhur Patil</td>
-                    <td>23101B0008</td>
-                    <td>2024-08-19</td>
-                    <td>
-                        <button class="btn btn-info btn-sm">View Details</button>
-                        <button class="btn btn-success btn-sm">Approve</button>
-                        <button class="btn btn-danger btn-sm">Reject</button>
-                        <button class="btn btn-warning btn-sm">Request Info</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Akanksha Jadhav</td>
-                    <td>23101B00##</td>
-                    <td>2024-08-01</td>
-                    <td>
-                        <button class="btn btn-info btn-sm">View Details</button>
-                        <button class="btn btn-success btn-sm">Approve</button>
-                        <button class="btn btn-danger btn-sm">Reject</button>
-                        <button class="btn btn-warning btn-sm">Request Info</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Samiksha Dalvi</td>
-                    <td>23101B00##</td>
-                    <td>2024-08-15</td>
-                    <td>
-                        <button class="btn btn-info btn-sm">View Details</button>
-                        <button class="btn btn-success btn-sm">Approve</button>
-                        <button class="btn btn-danger btn-sm">Reject</button>
-                        <button class="btn btn-warning btn-sm">Request Info</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Vaibhav Bedre</td>
-                    <td>23101B0024</td>
-                    <td>2024-08-20</td>
-                    <td>
-                        <button class="btn btn-info btn-sm">View Details</button>
-                        <button class="btn btn-success btn-sm">Approve</button>
-                        <button class="btn btn-danger btn-sm">Reject</button>
-                        <button class="btn btn-warning btn-sm">Request Info</button>
-                    </td>
-                </tr>
-                <!-- More rows as needed -->
-            </tbody>
-        </table>
     </div>
 </div>
+
+<!-- Application Filters and Search -->
+<div class="filters-search mb-4">
+    <div class="row">
+        <div class="col-md-4 mb-2">
+            <input type="text" class="form-control" id="search-bar" placeholder="Search by name, ID, or other criteria" oninput="filterApplications()">
+        </div>
+        <div class="col-md-4 mb-2">
+            <select class="form-select" id="status-filter">
+                <option value="">All Statuses</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+        </div>
+        <div class="col-md-4 mb-2">
+            <input type="date" class="form-control" id="date-filter">
+        </div>
+    </div>
+</div>
+
+<!-- Application Table -->
+<div class="application-table">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Applicant Name</th>
+                <th scope="col">Application Email</th>
+                <th scope="col">Submission Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example rows, replace with dynamic content -->
+            <tr>
+                <td>Adarsh Dubey</td>
+                <td>23101C0037</td>
+                <td>2024-08-25</td>
+                <td>
+                    <button class="btn btn-info btn-sm">View Details</button>
+                    <button class="btn btn-success btn-sm">Approve</button>
+                    <button class="btn btn-danger btn-sm">Reject</button>
+                    <button class="btn btn-warning btn-sm">Request Info</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Keshav Verma</td>
+                <td>23101B0003</td>
+                <td>2024-08-24</td>
+                <td>
+                    <button class="btn btn-info btn-sm">View Details</button>
+                    <button class="btn btn-success btn-sm">Approve</button>
+                    <button class="btn btn-danger btn-sm">Reject</button>
+                    <button class="btn btn-warning btn-sm">Request Info</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Madhur Patil</td>
+                <td>23101B0008</td>
+                <td>2024-08-19</td>
+                <td>
+                    <button class="btn btn-info btn-sm">View Details</button>
+                    <button class="btn btn-success btn-sm">Approve</button>
+                    <button class="btn btn-danger btn-sm">Reject</button>
+                    <button class="btn btn-warning btn-sm">Request Info</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Akanksha Jadhav</td>
+                <td>23101B00##</td>
+                <td>2024-08-01</td>
+                <td>
+                    <button class="btn btn-info btn-sm">View Details</button>
+                    <button class="btn btn-success btn-sm">Approve</button>
+                    <button class="btn btn-danger btn-sm">Reject</button>
+                    <button class="btn btn-warning btn-sm">Request Info</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Samiksha Dalvi</td>
+                <td>23101B00##</td>
+                <td>2024-08-15</td>
+                <td>
+                    <button class="btn btn-info btn-sm">View Details</button>
+                    <button class="btn btn-success btn-sm">Approve</button>
+                    <button class="btn btn-danger btn-sm">Reject</button>
+                    <button class="btn btn-warning btn-sm">Request Info</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Vaibhav Bedre</td>
+                <td>23101B0024</td>
+                <td>2024-08-20</td>
+                <td>
+                    <button class="btn btn-info btn-sm">View Details</button>
+                    <button class="btn btn-success btn-sm">Approve</button>
+                    <button class="btn btn-danger btn-sm">Reject</button>
+                    <button class="btn btn-warning btn-sm">Request Info</button>
+                </td>
+            </tr>
+            <% applications.forEach(function(application) { %>
+    <tr>
+      <td><%= application.userId.name %></td>
+      <td><%= application.userId.email %></td>
+      <td><%= application.createdAt %></td>
+      <td>
+    <button class="btn btn-info btn-sm">View Details</button>
+
+        <% if (application.status === 'submitted') { %>
+          <form action="/applications/<%= application._id %>/approve" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-success btn-sm">Approve</button>
+          </form>
+          <form action="/applications/<%= application._id %>/reject" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+          </form>
+        <% } %>
+      </td>
+    </tr>
+  <% }); %>
+        </tbody>
+    </table>
+</div>
+</div>
   
+<script>
+    function filterApplications() {
+      const searchQuery = document.getElementById('search-bar').value.toLowerCase();
+      const filterStatus = document.getElementById('status-filter').value;
+
+      const rows = document.querySelectorAll('#applicationsTable tbody tr');
+      rows.forEach(row => {
+        const otrNumber = row.cells[0].textContent.toLowerCase();
+        const studentName = row.cells[1].textContent.toLowerCase();
+        const status = row.cells[2].textContent.toLowerCase();
+
+        const matchesSearch = otrNumber.includes(searchQuery) || studentName.includes(searchQuery);
+        const matchesStatus = filterStatus === 'all' || status === filterStatus;
+
+        if (matchesSearch && matchesStatus) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
 </body>
 

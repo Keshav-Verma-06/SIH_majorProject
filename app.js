@@ -162,8 +162,21 @@ app.get('/login/student/apphistory', async (req, res) => {
     res.render("students/apphistory.ejs");
 });
 app.get('/login/sag/manageappln', async (req, res) => {
-    res.render("sag/manageappln.ejs");
+    const applications = await Application.find();
+    res.render("sag/manageappln.ejs", { applications });
 });
+  
+  // Approve an application
+  app.post('/applications/:id/approve', async (req, res) => {
+    await Application.findByIdAndUpdate(req.params.id, { status: 'verified' });
+    res.redirect('/manage-applications');
+  });
+  
+  // Reject an application
+  app.post('/applications/:id/reject', async (req, res) => {
+    await Application.findByIdAndUpdate(req.params.id, { status: 'rejected' });
+    res.redirect('/manage-applications');
+  });
 app.get('/login/sag/dashboard', async (req, res) => {
     res.render("sag/dashboard.ejs");
 });
